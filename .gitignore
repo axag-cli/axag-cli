@@ -6,3 +6,8 @@ dist/
 .env.local
 coverage/
 .DS_Store
+
+# Website
+website/build/
+website/.docusaurus/
+website/node_modules/
