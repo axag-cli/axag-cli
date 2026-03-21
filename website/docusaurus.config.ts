@@ -7,8 +7,8 @@ const config: Config = {
   tagline: 'Scan, infer, review & apply AXAG annotations — the CLI companion for the AXAG Standard',
   favicon: 'img/favicon.svg',
 
-  url: 'https://axag-cli.github.io',
-  baseUrl: '/axag-cli/',
+  url: 'https://cli.axag.org',
+  baseUrl: '/',
 
   organizationName: 'axag-cli',
   projectName: 'axag-cli',
@@ -29,7 +29,7 @@ const config: Config = {
         operatingSystem: 'macOS, Linux, Windows',
         description:
           'CLI tool to scan websites, infer AXAG annotations, review interactively, and apply semantic contracts automatically.',
-        url: 'https://axag-cli.github.io/axag-cli/',
+        url: 'https://cli.axag.org/',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
         publisher: {
           '@type': 'Organization',

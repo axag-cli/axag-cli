@@ -7,6 +7,9 @@ dist/
 coverage/
 .DS_Store
 
+# Internal / planning (never push)
+.internal/
+
 # Website
 website/build/
 website/.docusaurus/

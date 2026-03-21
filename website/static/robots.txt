@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://axag-cli.github.io/axag-cli/sitemap.xml
+Sitemap: https://cli.axag.org/sitemap.xml
