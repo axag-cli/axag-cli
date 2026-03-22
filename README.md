@@ -1,4 +1,8 @@
+
 # 🏷️ axag-cli
+
+[![Homepage](https://img.shields.io/badge/homepage-axag.org-blue?logo=semantic-web)](https://axag.org)
+[![CLI Homepage](https://img.shields.io/badge/cli.axag.org-AXAG%20CLI-blueviolet?logo=terminal)](https://cli.axag.org)
 
 > Scan websites, infer AXAG annotations, review interactively, and apply automatically.
 
