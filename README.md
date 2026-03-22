@@ -2,7 +2,7 @@
 
 > Scan websites, infer AXAG annotations, review interactively, and apply automatically.
 
-`axag-cli` is the companion CLI for the [AXAG Standard](https://axag.dev) — Agent Context Annotation Guidelines. It automates the process of making your UI agent-accessible by scanning your website, inferring semantic annotations, letting you review and refine them, and then applying them to your source files.
+`axag-cli` is the companion CLI for the [AXAG Standard](https://axag.org) — Agent Context Annotation Guidelines. It automates the process of making your UI agent-accessible by scanning your website, inferring semantic annotations, letting you review and refine them, and then applying them to your source files.
 
 ---
 
@@ -167,7 +167,7 @@ Create `axag.config.json` in your project root (or run `axag init`):
 
 ```json
 {
-  "$schema": "https://axag.dev/schema/v1/config.json",
+  "$schema": "https://axag.org/schema/v1/config.json",
   "outputDir": ".axag",
   "domain": "ecommerce",
   "ai": {

@@ -8,6 +8,9 @@ import { createSpinner } from 'nanospinner';
 import chalk from 'chalk';
 import type { ScanResult } from '../types/index.js';
 import { scanUrl, scanDirectory } from '../scanner/index.js';
+import { scanFiles } from '../scanner/file-scanner.js';
+import { generateManifest } from '../manifest/generator.js';
+import { validateManifest } from '../manifest/schema-validator.js';
 import { inferAnnotations } from '../annotator/index.js';
 import { interactiveReview } from '../interactive/index.js';
 import { generateReport } from '../reporter/index.js';
@@ -24,6 +27,8 @@ interface ScanOptions {
   aiModel: string;
   maxPages: string;
   interactive: boolean;
+  manifest?: string;
+  validate?: boolean;
 }
 
 export async function scanCommand(
@@ -129,7 +134,7 @@ export async function scanCommand(
       totalElements: scanOutput.elements.length,
       totalAnnotations: annotations.length,
       scanDurationMs: scanDuration,
-      cliVersion: '0.1.0',
+      cliVersion: '1.0.0',
     },
     pages: scanOutput.pages.map((p) => ({
       ...p,
@@ -156,6 +161,41 @@ export async function scanCommand(
     'html',
     path.join(config.outputDir, 'report.html'),
   );
+
+  // ── Phase 7: Generate manifest (if local path) ──
+  if (!isUrl && options.manifest) {
+    const manifestSpinner = createSpinner('Generating manifest...').start();
+    try {
+      const resolvedDir = path.resolve(target);
+      const annotatedElements = await scanFiles(resolvedDir);
+
+      const manifest = generateManifest(annotatedElements, {
+        paths: [resolvedDir],
+      });
+
+      const manifestPath = path.resolve(options.manifest);
+      await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2), 'utf-8');
+      manifestSpinner.success({ text: `Manifest written to ${manifestPath}` });
+
+      logger.kv('Actions', `${manifest.actions.length}`);
+      logger.kv('Conformance', manifest.conformance);
+
+      // Validate if requested
+      if (options.validate) {
+        const validation = validateManifest(manifest);
+        if (validation.valid) {
+          logger.success('Manifest passes schema validation ✅');
+        } else {
+          logger.info('Manifest validation errors:');
+          for (const err of validation.errors ?? []) {
+            logger.info(`  - ${err}`);
+          }
+        }
+      }
+    } catch (err) {
+      manifestSpinner.error({ text: `Manifest generation failed: ${(err as Error).message}` });
+    }
+  }
 
   // ── Summary ───────────────────────────────────
   logger.section('Scan Complete');

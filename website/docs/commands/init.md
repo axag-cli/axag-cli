@@ -36,7 +36,7 @@ Running `axag init` creates an `axag.config.json` in your project root:
 
 ```json
 {
-  "$schema": "https://axag.dev/schema/v1/config.json",
+  "$schema": "https://axag.org/schema/v1/config.json",
   "outputDir": ".axag",
   "domain": "ecommerce",
   "ai": {

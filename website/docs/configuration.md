@@ -12,7 +12,7 @@ axag-cli works out of the box with zero configuration. For advanced use, create 
 
 ```json
 {
-  "$schema": "https://axag.dev/schema/v1/config.json",
+  "$schema": "https://axag.org/schema/v1/config.json",
   "outputDir": ".axag",
   "domain": "ecommerce",
   "ai": {

@@ -29,7 +29,7 @@ export async function crawlWebsite(
   const browser = await chromium.launch({ headless: options.headless });
   const context = await browser.newContext({
     userAgent:
-      'AXAG-CLI/0.1.0 (Semantic Annotation Scanner; +https://axag.dev)',
+      'AXAG-CLI/1.0.0 (Semantic Annotation Scanner; +https://axag.org)',
   });
 
   const visited = new Set<string>();

@@ -85,7 +85,7 @@ export async function initCommand(options: InitOptions): Promise<void> {
   ]);
 
   const config = {
-    $schema: 'https://axag.dev/schema/v1/config.json',
+    $schema: 'https://axag.org/schema/v1/config.json',
     outputDir: '.axag',
     domain: answers.domain,
     ai: {

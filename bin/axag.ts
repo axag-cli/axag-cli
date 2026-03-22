@@ -8,6 +8,7 @@
  *   axag report            Generate report from the last scan
  *   axag apply             Apply confirmed annotations to source files
  *   axag validate          Validate existing AXAG annotations
+ *   axag generate-tools    Generate MCP tool definitions from a manifest
  *   axag init              Initialize .axag config in the current project
  */
 
@@ -17,6 +18,7 @@ import { scanCommand } from '../src/commands/scan.js';
 import { reportCommand } from '../src/commands/report.js';
 import { applyCommand } from '../src/commands/apply.js';
 import { validateCommand } from '../src/commands/validate.js';
+import { generateToolsCommand } from '../src/commands/generate-tools.js';
 import { initCommand } from '../src/commands/init.js';
 
 const program = new Command();
@@ -27,7 +29,7 @@ program
     chalk.bold('AXAG CLI') +
       ' — Scan websites, infer semantic annotations, review & apply automatically.',
   )
-  .version('0.1.0');
+  .version('1.0.0');
 
 /* ─── scan ───────────────────────────────────── */
 program
@@ -43,6 +45,8 @@ program
   .option('--max-pages <n>', 'Maximum pages to crawl', '10')
   .option('--interactive', 'Enter interactive review mode after scan (default: true)', true)
   .option('--no-interactive', 'Skip interactive review — just output the report')
+  .option('--manifest <path>', 'Generate manifest JSON and write to specified path')
+  .option('--validate', 'Validate generated manifest against AXAG JSON Schema', false)
   .action(scanCommand);
 
 /* ─── report ─────────────────────────────────── */
@@ -77,5 +81,13 @@ program
   .description('Initialize AXAG configuration in the current project')
   .option('--force', 'Overwrite existing config', false)
   .action(initCommand);
+
+/* ─── generate-tools ─────────────────────────── */
+program
+  .command('generate-tools')
+  .description('Generate MCP tool definitions from an AXAG manifest')
+  .requiredOption('-m, --manifest <path>', 'Path to axag-manifest.json')
+  .option('-o, --output <dir>', 'Output directory for tool registry', './tools')
+  .action(generateToolsCommand);
 
 program.parse();
