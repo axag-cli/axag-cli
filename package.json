@@ -1,6 +1,6 @@
 {
   "name": "@web-axag/axag-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI tool to scan websites, infer AXAG annotations, interactively review, and apply semantic contracts automatically.",
   "type": "module",
   "bin": {

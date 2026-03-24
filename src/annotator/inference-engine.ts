@@ -15,7 +15,7 @@ export interface AIInferenceOptions {
   apiKey?: string;
 }
 
-const SYSTEM_PROMPT = `You are an AXAG (Agent Context Annotation Guidelines) annotation expert.
+const SYSTEM_PROMPT = `You are an AXAG (Agent Experience Accessibility Guidelines) annotation expert.
 Given an HTML element and its page context, infer the correct axag-* attributes.
 
 AXAG attributes:
